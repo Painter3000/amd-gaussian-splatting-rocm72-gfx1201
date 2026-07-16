@@ -495,6 +495,9 @@ python convert.py -s <location> --skip_matching [--resize] #If not resizing, Ima
 <br>
 
 ### Training speed acceleration
+> [!IMPORTANT]
+> The `3dgs_accel` variant is not included in this ROCm 7.2 / gfx1201 baseline and has not yet been validated on AMD hardware. See [README_ROCM.md](README_ROCM.md#known-limitations).
+
 
 We integrated the drop-in replacements from [Taming-3dgs](https://humansensinglab.github.io/taming-3dgs/)<sup>1</sup> with [fused ssim](https://github.com/rahul-goel/fused-ssim/tree/main) into the original codebase to speed up training times. Once installed, the accelerated rasterizer delivers a **$\times$ 1.6 training time speedup** using `--optimizer_type default` and a **$\times$ 2.7 training time speedup** using `--optimizer_type sparse_adam`.
 
