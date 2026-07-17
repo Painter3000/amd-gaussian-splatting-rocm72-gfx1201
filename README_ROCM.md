@@ -90,12 +90,38 @@ print("ROCM_EXTENSIONS: PASS")
 PY
 ```
 
-## Training example
+## Download the official validation dataset
+
+The validation results below use the `truck` scene from the official Graphdeco
+T&T+DB COLMAP archive (approximately 650 MB). Download it directly from the
+upstream project:
 
 ```bash
+mkdir -p data
+
+wget \
+  https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/input/tandt_db.zip \
+  -P data
+
+unzip data/tandt_db.zip -d data/
+```
+
+After extraction, the validated scene is located at `data/tandt/truck`. The
+archive also contains the other Tanks and Temples and Deep Blending scenes
+provided by the upstream project.
+
+## Training example
+
+The following command trains the same `truck` scene used for the documented
+ROCm validation:
+
+```bash
+SCENE="$PWD/data/tandt/truck"
+OUTPUT="$PWD/output/rocm-training"
+
 python train.py \
-  -s /path/to/colmap/dataset \
-  -m output/rocm-training \
+  -s "$SCENE" \
+  -m "$OUTPUT" \
   --data_device cpu \
   --iterations 30000 \
   --test_iterations 7000 15000 30000 \
