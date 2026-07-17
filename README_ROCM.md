@@ -122,7 +122,9 @@ OUTPUT="$PWD/output/rocm-training"
 python train.py \
   -s "$SCENE" \
   -m "$OUTPUT" \
+  -r 2 \
   --data_device cpu \
+  --eval \
   --iterations 30000 \
   --test_iterations 7000 15000 30000 \
   --save_iterations 7000 15000 30000 \
